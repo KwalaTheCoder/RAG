@@ -1,197 +1,184 @@
-# 📄 PDF Intelligence System (RAG)
+# 📄 Multilingual PDF Intelligence System
 
-A lightweight Retrieval-Augmented Generation (RAG) application that allows users to upload PDF documents and ask questions about their content using an LLM through OpenRouter.
+A lightweight Retrieval-Augmented Generation (RAG) application that allows users to upload PDF documents and ask questions in multiple languages.
+
+The system automatically detects the language of the user's question and responds in the same language while using the uploaded document as its knowledge source.
+
+---
 
 ## ✨ Features
 
- PDF upload and processing
- Automatic text extraction using PyMuPDF
- Document chunking for efficient retrieval
- Context-aware question answering
- Modern dark-themed user interface
- Drag & drop PDF support
- Real-time chat experience
- OpenRouter API integration
+* 📄 PDF Upload & Processing
+* 🔍 Retrieval-Augmented Generation (RAG)
+* 🌍 Automatic Language Detection
+* 🇮🇷 Persian Question Answering
+* 🇬🇧 English Question Answering
+* 🤖 OpenRouter LLM Integration
+* 💬 Modern Chat Interface
+* 📁 Drag & Drop PDF Upload
+* ⚡ Fast Keyword-Based Retrieval
 
-## 🖼️ Demo
+---
 
-The application consists of
+## 🚀 How It Works
 
- Frontend `rag_demo.html`
- Backend `rag_server.py`
+1. Upload a PDF document.
+2. The system extracts text using PyMuPDF.
+3. The document is split into manageable chunks.
+4. Relevant chunks are retrieved based on the user's question.
+5. The selected context is sent to an LLM through OpenRouter.
+6. The model generates an answer using only the document content.
+7. The response language automatically matches the user's question language.
 
-Users can
+---
 
-1. Upload a PDF document
-2. Process the document into chunks
-3. Ask questions about the document
-4. Receive answers generated from the most relevant sections
+## 🌐 Multilingual Support
+
+### Persian Example
+
+**Question:**
+
+```text
+این سند درباره چیست؟
+```
+
+**Response:**
+
+```text
+این سند درباره ...
+```
+
+### English Example
+
+**Question:**
+
+```text
+What is the main topic of this document?
+```
+
+**Response:**
+
+```text
+The document discusses ...
+```
+
+The system automatically detects the language and responds accordingly.
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-PDF Upload
-     │
-     ▼
-Text Extraction (PyMuPDF)
-     │
-     ▼
+PDF
+ │
+ ▼
+Text Extraction
+ │
+ ▼
 Chunking
-     │
-     ▼
-Keyword-Based Retrieval
-     │
-     ▼
-Context Construction
-     │
-     ▼
+ │
+ ▼
+Keyword Retrieval
+ │
+ ▼
+Context Building
+ │
+ ▼
 OpenRouter LLM
-     │
-     ▼
+ │
+ ▼
 Answer Generation
 ```
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠 Technologies
 
 ### Backend
 
- Python
- Flask
- Flask-CORS
- PyMuPDF (fitz)
- OpenAI SDK
- OpenRouter API
+* Python
+* Flask
+* Flask-CORS
+* PyMuPDF
+* OpenAI SDK
+* OpenRouter API
 
 ### Frontend
 
- HTML5
- CSS3
- Vanilla JavaScript
+* HTML
+* CSS
+* JavaScript
 
 ---
 
 ## 📦 Installation
 
-### 1. Clone the repository
-
-```bash
-git clone httpsgithub.comyourusernamepdf-intelligence-system.git
-cd pdf-intelligence-system
-```
-
-### 2. Install dependencies
-
 ```bash
 pip install flask flask-cors pymupdf openai
 ```
 
-### 3. Configure API Key
+---
 
-Replace the OpenRouter API key in
+## 🔑 Environment Variable
 
-```python
-client = OpenAI(
-    base_url=httpsopenrouter.aiapiv1,
-    api_key=YOUR_API_KEY
-)
+Never store your API key directly in the source code.
+
+```bash
+OPENROUTER_API_KEY=your_key_here
 ```
 
-For security, it is recommended to use environment variables instead of hardcoding API keys.
-
-Example
+Example:
 
 ```python
-import os
-
 client = OpenAI(
-    base_url=httpsopenrouter.aiapiv1,
-    api_key=os.getenv(OPENROUTER_API_KEY)
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY")
 )
 ```
 
 ---
 
-## 🚀 Running the Application
-
-Start the server
+## ▶️ Run
 
 ```bash
 python rag_server.py
 ```
 
-Open your browser
+Open:
 
 ```text
-httplocalhost5000
-```
-
-Upload a PDF and start asking questions.
-
----
-
-## 📁 Project Structure
-
-```text
-project
-│
-├── rag_server.py      # Flask backend
-├── rag_demo.html      # Frontend UI
-├── README.md
+http://localhost:5000
 ```
 
 ---
 
-## ⚙️ How Retrieval Works
+## ⚠️ Current Limitations
 
-The system
+Current retrieval uses keyword matching.
 
-1. Extracts text from uploaded PDFs.
-2. Splits text into chunks of 500 words.
-3. Finds the most relevant chunks using keyword overlap.
-4. Builds a context from the top matching chunks.
-5. Sends the context and user question to the LLM.
-6. Returns the generated answer.
+Possible future improvements:
 
----
-
-## 🔒 Limitations
-
-Current retrieval is based on simple keyword matching.
-
-Potential improvements
-
- Sentence embeddings
- Vector databases (FAISS, ChromaDB, Pinecone)
- Semantic search
- Hybrid retrieval
- Streaming responses
- Multi-document support
+* FAISS Vector Database
+* Sentence Transformers Embeddings
+* Semantic Search
+* Hybrid Search
+* OCR Support
+* Multi-document Knowledge Base
+* Conversation Memory
 
 ---
 
-## 📈 Future Improvements
+## ⭐ Future Roadmap
 
- FAISS vector search
- LangChain integration
- Conversation memory
- OCR for scanned PDFs
- Multi-file knowledge base
- User authentication
- Source citations
- Docker deployment
+* Semantic RAG
+* Vector Search
+* Source Citations
+* Docker Deployment
+* Authentication System
+* Multi-user Support
 
 ---
 
-## 📜 License
+## License
 
-This project is open-source and available under the MIT License.
-
----
-
-## ⭐ Support
-
-If you find this project useful, consider giving it a star on GitHub.
+MIT License
